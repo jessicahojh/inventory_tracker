@@ -21,11 +21,15 @@ def load_users():
 def load_items():
     """Load sample items into database."""
 
-    item_1 = Item(user_id="1", name="Blue Shirt", category_id="1", quantity=1, size="S", sold=False, sold_price =None, shipping_price=None)
-    item_2 = Item(user_id="2", name="Red Shirt", category_id="1", quantity=1, size="M", sold=True, sold_price =15, shipping_price=2)
-    item_3 = Item(user_id="1", name="Yellow Shirt", category_id="1", quantity=1, size="L", sold=True, sold_price =9, shipping_price=5)
-    item_4 = Item(user_id="2", name="Pink Shirt", category_id="1", quantity=1, size="XL", sold=False, sold_price =None, shipping_price=None)
+    # item_1 = Item(user_id="1", name="Blue Shirt", category_id="1", quantity=1, size="S", sold=False, sold_price =None, shipping_price=None)
+    # item_2 = Item(user_id="2", name="Red Shirt", category_id="1", quantity=1, size="M", sold=True, sold_price =15, shipping_price=2)
+    # item_3 = Item(user_id="1", name="Yellow Shirt", category_id="1", quantity=1, size="L", sold=True, sold_price =9, shipping_price=5)
+    # item_4 = Item(user_id="2", name="Pink Shirt", category_id="1", quantity=1, size="XL", sold=False, sold_price =None, shipping_price=None)
 
+    item_1 = Item(user_id=1, name="Blue Shirt", category_id=1)
+    item_2 = Item(user_id=2, name="Red Shirt", category_id=1)
+    item_3 = Item(user_id=1, name="Yellow Shirt", category_id=1)
+    item_4 = Item(user_id=2, name="Pink Shirt", category_id=1)
 
     db.session.add(item_1)
     db.session.add(item_2)
@@ -42,7 +46,6 @@ def load_categories():
 
     db.session.add(category_1)
     db.session.add(category_2)
-
     db.session.commit()
 
 if __name__ == "__main__":
@@ -51,5 +54,6 @@ if __name__ == "__main__":
     db.create_all()
 
     load_users()
-    load_items()
     load_categories()
+    load_items()
+    

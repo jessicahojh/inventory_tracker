@@ -16,6 +16,14 @@ class User(db.Model):
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
 
+class Category(db.Model):
+    """Item categories."""
+
+    __tablename__ = "categories"
+
+    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    category_name = db.Column(db.String(50), nullable=False)
+
 
 class Item(db.Model):
     """User's items in their inventory."""
@@ -29,11 +37,11 @@ class Item(db.Model):
     # image_url = db.Column(db.String(200), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
     # purchase_date = db.Column(db.TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
-    quantity = db.Column(db.Integer, nullable=False)
-    size = db.Column(db.String(50), nullable=False)
-    sold = db.Column(db.Boolean, nullable=False)
-    sold_price = db.Column(db.Integer, nullable=False)
-    shipping_price = db.Column(db.Integer, nullable=False)
+    # quantity = db.Column(db.Integer, nullable=False)
+    # size = db.Column(db.String(50), nullable=False)
+    # sold = db.Column(db.Boolean, nullable=False)
+    # sold_price = db.Column(db.Integer, nullable=False)
+    # shipping_price = db.Column(db.Integer, nullable=False)
     # sold_date = db.Column(db.TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
 
 
@@ -41,15 +49,6 @@ class Item(db.Model):
     user = db.relationship("User", backref=db.backref("items"))
     # Define relationship to category
     user = db.relationship("Category", backref=db.backref("items"))
-
-
-class Category(db.Model):
-    """Item categories."""
-
-    __tablename__ = "categories"
-
-    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    category_name = db.Column(db.String(50), nullable=False)
 
 
 ##############################################################################
