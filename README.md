@@ -40,7 +40,7 @@ $ pip install -r requirements.txt
 ```
 Create database:
 ```
-$ createdb sanfrancisco
+$ createdb inventory
 ```
 Seed data into the database tables:
 ```
