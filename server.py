@@ -35,7 +35,6 @@ def items_list():
 
     item = Item.query.all()
 
-
     return render_template("items.html", item=item)
     
     
