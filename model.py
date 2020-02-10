@@ -39,9 +39,9 @@ class Item(db.Model):
     # purchase_date = db.Column(db.TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
     quantity = db.Column(db.Integer, nullable=False)
     size = db.Column(db.String(50), nullable=False)
-    sold = db.Column(db.Boolean, nullable=False)
-    sold_price = db.Column(db.Integer, nullable=False)
-    shipping_price = db.Column(db.Integer, nullable=False)
+    sold = db.Column(db.Boolean, default=False)
+    sold_price = db.Column(db.Integer, default=0)
+    shipping_price = db.Column(db.Integer, default=0)
     # sold_date = db.Column(db.TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
 
 

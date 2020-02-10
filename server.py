@@ -10,7 +10,6 @@ import json
 
 from datetime import datetime
 
-
 app = Flask(__name__)
 
 
@@ -93,6 +92,38 @@ def items_list():
     item = Item.query.all()
 
     return render_template("items.html", item=item)
+
+
+@app.route('/additems', methods=['GET'])
+def add_item():
+    """Show form for adding item."""
+
+    return render_template("add_item.html")
+
+@app.route("/additems", methods=['POST'])
+def add_item_process():
+    """If user is logged in, let them add items to their inventory. Users can only see the 
+    option to add inventory if they are logged in"""
+
+    user_id = session.get("user_id")
+    user = User.query.get(user_id)
+
+    name = request.form["name"]
+    category_id = request.form["category_id"]
+    quantity = request.form["quantity"]
+    size = request.form["size"]
+    sold = request.form["sold"]
+    sold_price = request.form["sold_price"]
+    shipping_price = request.form["shipping_price"]
+
+
+    new_item = Item(user_id=user_id, name=name, category_id=category_id, quantity=quantity,
+    size=size,sold=sold, sold_price=sold_price, shipping_price=shipping_price)
+
+    db.session.add(new_item)
+    db.session.commit()
+
+    return redirect("/items")
     
     
 if __name__ == "__main__":
@@ -103,7 +134,7 @@ if __name__ == "__main__":
     connect_to_db(app)
 
     # Use the DebugToolbar
-    DebugToolbarExtension(app)
+    # DebugToolbarExtension(app)
 
     app.run()
     # app.run(host="0.0.0.0")
