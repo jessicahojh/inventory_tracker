@@ -89,10 +89,12 @@ def homepage():
 def items_list():
     """Show list of items."""
 
-    item = Item.query.all()
+    user_id = session.get("user_id")
+    user = User.query.get(user_id)
+
+    item = Item.query.filter(Item.user_id == user_id).all()
 
     return render_template("items.html", item=item)
-
 
 @app.route('/additems', methods=['GET'])
 def add_item():
