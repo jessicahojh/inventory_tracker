@@ -112,13 +112,9 @@ def add_item_process():
     category_id = request.form["category_id"]
     quantity = request.form["quantity"]
     size = request.form["size"]
-    sold = request.form["sold"]
-    sold_price = request.form["sold_price"]
-    shipping_price = request.form["shipping_price"]
-
 
     new_item = Item(user_id=user_id, name=name, category_id=category_id, quantity=quantity,
-    size=size,sold=sold, sold_price=sold_price, shipping_price=shipping_price)
+    size=size)
 
     db.session.add(new_item)
     db.session.commit()
