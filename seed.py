@@ -21,15 +21,10 @@ def load_users():
 def load_items():
     """Load sample items into database."""
 
-    item_1 = Item(user_id=1, name="Blue Shirt", category_id=1, quantity=1, size="S")
-    item_2 = Item(user_id=2, name="Red Shirt", category_id=1, quantity=1, size="M")
-    item_3 = Item(user_id=1, name="Yellow Shirt", category_id=1, quantity=1, size="L")
-    item_4 = Item(user_id=2, name="Pink Shirt", category_id=1, quantity=1, size="XL")
-
-    # item_1 = Item(user_id=1, name="Blue Shirt", category_id=1)
-    # item_2 = Item(user_id=2, name="Red Shirt", category_id=1)
-    # item_3 = Item(user_id=1, name="Yellow Shirt", category_id=1)
-    # item_4 = Item(user_id=2, name="Pink Shirt", category_id=1)
+    item_1 = Item(user_id=1, name="Blue Shirt", image="/static/blue.jpg", category_id=1, quantity=1, size="S")
+    item_2 = Item(user_id=2, name="Red Shirt", image="/static/red.jpg", category_id=1, quantity=1, size="M")
+    item_3 = Item(user_id=1, name="Yellow Shirt", image="/static/yellow.jpg", category_id=1, quantity=1, size="L")
+    item_4 = Item(user_id=2, name="Pink Shirt", image="/static/pink.jpg", category_id=1, quantity=1, size="XL")
 
     db.session.add(item_1)
     db.session.add(item_2)

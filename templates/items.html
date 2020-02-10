@@ -8,13 +8,8 @@
 <h1>Items in Inventory</h1>
 <div>
 {% for i in item %}
-<div>Name: {{i.name}}</div>
-<div>Category: {{i.category_id}}</div>
-<div>Quantity: {{i.quantity}}</div>
-<div>Size: {{i.size}}</div>
-<div>Sold: {{i.sold}}</div>
-<div>Sold Price: ${{i.sold_price}}</div>
-<div>Shipping Price ${{i.shipping_price}}</div>
+<a href="/items/{{ i.item_id }}"> <img style="height: 300px" src="{{ i.image }}"> </a>
+<div>{{i.name}}</div>
 <br>
 {% endfor %}
 </div>

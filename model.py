@@ -34,7 +34,7 @@ class Item(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     # created_date = db.Column(db.TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
     name = db.Column(db.String(50), nullable=False)
-    # image_url = db.Column(db.String(200), nullable=False)
+    image = db.Column(db.String(200), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
     # purchase_date = db.Column(db.TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
     quantity = db.Column(db.Integer, nullable=False)
