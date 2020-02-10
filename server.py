@@ -104,6 +104,31 @@ def specific_item(item_id):
 
     return render_template("specific_item.html", item=item)
 
+@app.route("/items/<int:item_id>/sold", methods=['GET'])
+def sold_form(item_id):
+    """Show sold form."""
+
+    item = Item.query.get(item_id)
+
+    return render_template("sold_form.html", item=item)
+
+@app.route("/items/<int:item_id>/sold", methods=['POST'])
+def sold_process(item_id):
+    """Process sold item."""
+
+    item = Item.query.get(item_id)
+
+    sold_price = request.form["sold_price"]
+    shipping_price = request.form["shipping_price"]
+
+    item.sold = True
+    item.sold_price = sold_price
+    item.shipping_price = shipping_price
+
+    db.session.commit()
+
+    return redirect("/")
+
 @app.route('/additems', methods=['GET'])
 def add_item():
     """Show form for adding item."""
