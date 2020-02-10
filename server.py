@@ -33,7 +33,7 @@ def register_process():
     email = request.form["email"]
     password = request.form["password"]
 
-    new_user = User(email=email, password=password, status=status)
+    new_user = User(email=email, password=password)
 
     db.session.add(new_user)
     db.session.commit()
@@ -95,6 +95,14 @@ def items_list():
     item = Item.query.filter(Item.user_id == user_id).all()
 
     return render_template("items.html", item=item)
+
+@app.route("/items/<int:item_id>")
+def specific_item(item_id):
+    """Show specific item."""
+
+    item = Item.query.get(item_id)
+
+    return render_template("specific_item.html", item=item)
 
 @app.route('/additems', methods=['GET'])
 def add_item():
