@@ -151,8 +151,6 @@ def edit_form(item_id):
 def process_edit_form(item_id):
     """Process edit form."""
 
-    # Doesn't work
-
     item = Item.query.get(item_id)
 
     name = request.form["name"]
@@ -165,11 +163,13 @@ def process_edit_form(item_id):
 
     db.session.commit()
 
-    return redirect("/items/<int:item_id>")
+    return redirect("/items")
 
 @app.route("/items/<int:item_id>/delete", methods=['DELETE'])
 def delete(item_id):
     """Delete item."""
+
+    # Doesn't work
 
     item = Item.query.get(item_id)
 
