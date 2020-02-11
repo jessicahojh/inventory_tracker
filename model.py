@@ -16,13 +16,13 @@ class User(db.Model):
     email = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
 
-class Category(db.Model):
-    """Item categories."""
+# class Category(db.Model):
+#     """Item categories."""
 
-    __tablename__ = "categories"
+#     __tablename__ = "categories"
 
-    category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    category_name = db.Column(db.String(50), nullable=False)
+#     category_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+#     category_name = db.Column(db.String(50), nullable=False)
 
 
 class Item(db.Model):
@@ -35,7 +35,7 @@ class Item(db.Model):
     # created_date = db.Column(db.TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
     name = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(200), nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
+    # category_id = db.Column(db.Integer, db.ForeignKey('categories.category_id'))
     # purchase_date = db.Column(db.TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now())
     quantity = db.Column(db.Integer, nullable=False)
     size = db.Column(db.String(50), nullable=False)
@@ -48,7 +48,7 @@ class Item(db.Model):
     # Define relationship to user
     user = db.relationship("User", backref=db.backref("items"))
     # Define relationship to category
-    user = db.relationship("Category", backref=db.backref("items"))
+    # user = db.relationship("Category", backref=db.backref("items"))
 
 
 ##############################################################################

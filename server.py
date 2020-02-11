@@ -2,7 +2,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db, User, Item, Category
+from model import connect_to_db, db, User, Item
 
 import requests
 
@@ -51,7 +51,6 @@ def login_form():
 def login_process():
     """Process login."""
 
-    # Get form variables
     email = request.form["email"]
     password = request.form["password"]
 
@@ -126,6 +125,45 @@ def sold_process(item_id):
     item.shipping_price = shipping_price
 
     db.session.commit()
+
+    return redirect("/")
+
+@app.route("/items/<int:item_id>/edit", methods=['GET'])
+def edit_form(item_id):
+    """Show edit form."""
+
+    item = Item.query.get(item_id)
+
+    return render_template("edit_item.html", item=item)
+
+@app.route("/items/<int:item_id>/edit", methods=['POST'])
+def process_edit_form(item_id):
+    """Process edit form."""
+
+    item = Item.query.get(item_id)
+
+    name = request.form["name"]
+    category_id = request.form["category_id"]
+    quantity = request.form["quantity"]
+    size = request.form["size"]
+
+    item.name = name
+    item.category_id = category_id
+    item.quantity = quantity
+    item.size = size
+
+    db.session.commit()
+
+    return redirect("/items/<int:item_id>")
+
+@app.route("/items/<int:item_id>/delete", methods=['DELETE'])
+def delete(item_id):
+    """Delete item."""
+
+    item = Item.query.get(item_id)
+
+    session.delete(item)
+    session.commit()
 
     return redirect("/")
 

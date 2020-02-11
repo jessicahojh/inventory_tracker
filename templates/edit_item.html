@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Inventory Tracker</title>
+</head>
+<body>
+
+    <h1>Edit Item</h1>
+
+    <form action="edit_item" method="PUT">
+
+    <div>
+      <label>
+        Name
+        <input type="name" name="name" value="{{item.name}}">
+      </label>
+    </div>
+
+    <div>
+      <label>
+        Category
+        <input type="category" name="category" value="{{item.category_id}}">
+      </label>
+    </div>
+
+    <div>
+        <label>
+          Size
+          <input type="size" name="size" value="{{item.size}}">
+        </label>
+    </div>
+
+    <div>
+      <input type="submit" class="btn btn-primary" value="save">
+    </div>
+
+    </form>
+
+</body>
+</html>
