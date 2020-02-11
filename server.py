@@ -165,7 +165,7 @@ def process_edit_form(item_id):
 
     return redirect("/items")
 
-@app.route("/items/<int:item_id>/delete", methods=['DELETE'])
+@app.route("/items/<int:item_id>/delete", methods=['POST'])
 def delete(item_id):
     """Delete item."""
 
@@ -173,8 +173,8 @@ def delete(item_id):
 
     item = Item.query.get(item_id)
 
-    session.delete(item)
-    session.commit()
+    db.session.delete(item)
+    db.session.commit()
 
     return redirect("/")
 
@@ -192,13 +192,12 @@ def add_item_process():
     user_id = session.get("user_id")
     user = User.query.get(user_id)
 
+    image = request.form["img"]
     name = request.form["name"]
-    category_id = request.form["category_id"]
     quantity = request.form["quantity"]
     size = request.form["size"]
 
-    new_item = Item(user_id=user_id, name=name, category_id=category_id, quantity=quantity,
-    size=size)
+    new_item = Item(user_id=user_id, name=name, image=image, quantity=quantity, size=size)
 
     db.session.add(new_item)
     db.session.commit()
