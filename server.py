@@ -95,6 +95,17 @@ def items_list():
 
     return render_template("items.html", item=item)
 
+@app.route("/solditems")
+def sold_items_list():
+    """Show list of sold items."""
+
+    user_id = session.get("user_id")
+    user = User.query.get(user_id)
+
+    item = Item.query.filter(Item.user_id == user_id, Item.sold == True).all()
+
+    return render_template("items.html", item=item)
+
 @app.route("/items/<int:item_id>")
 def specific_item(item_id):
     """Show specific item."""
