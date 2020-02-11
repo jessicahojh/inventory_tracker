@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script 
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 <head>
 <title>Inventory Tracker</title>
 </head>
@@ -14,6 +18,10 @@
 <div>Sold: {{item.sold}}</div>
 <div>Sold Price: ${{item.sold_price}}</div>
 <div>Shipping Price ${{item.shipping_price}}</div>
+
+<a href="/items/{{item.item_id}}/sold"><button type="button" class="btn btn-success">Sold</button></a>
+<a href="/items/{{item.item_id}}/edit"><button type="button" class="btn btn-secondary">Edit</button></a>
+<a href="/items/{{item.item_id}}>/delete"><button type="button" class="btn btn-danger">Delete</button></a>
 
 <br>
 

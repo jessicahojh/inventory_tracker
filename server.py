@@ -137,7 +137,7 @@ def sold_process(item_id):
 
     db.session.commit()
 
-    return redirect("/")
+    return redirect("/items")
 
 @app.route("/items/<int:item_id>/edit", methods=['GET'])
 def edit_form(item_id):
@@ -151,15 +151,15 @@ def edit_form(item_id):
 def process_edit_form(item_id):
     """Process edit form."""
 
+    # Doesn't work
+
     item = Item.query.get(item_id)
 
     name = request.form["name"]
-    category_id = request.form["category_id"]
     quantity = request.form["quantity"]
     size = request.form["size"]
 
     item.name = name
-    item.category_id = category_id
     item.quantity = quantity
     item.size = size
 
